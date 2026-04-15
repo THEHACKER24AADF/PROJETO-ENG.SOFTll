@@ -1,4 +1,16 @@
 {
+    {
+  "sonarlint.connectedMode.connections.sonarcloud": [
+    {
+      "connectionId": "ConexaoProjetoEngenharia",
+      "organizationKey": "SUA_ORGANIZACAO_AQUI"
+    }
+  ],
+  "sonarlint.connectedMode.project": {
+    "connectionId": "ConexaoProjetoEngenharia",
+    "projectKey": "SUA_CHAVE_DE_PROJETO_AQUI"
+  }
+}
     // TODO: Adicionar configuracoes do Sonarcloud aqui 
     // (VEJA README.MD DA PASTA .vscode PARA MAIS DETALHES)
     "git.ignoreLimitWarning": false,
