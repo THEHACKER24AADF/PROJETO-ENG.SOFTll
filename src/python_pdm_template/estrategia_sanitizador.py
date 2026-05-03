@@ -1,0 +1,7 @@
+from .base_strategy import EstrategiaSanitizacao
+
+class SanitizadorTXT(EstrategiaSanitizacao):
+    def sanitizar(self, conteudo: str) -> str:
+        # Lógica temporária apenas para a CLI/GUI poder testar
+        conteudo_limpo = conteudo.replace("DADO_SENSIVEL", "***")
+        return conteudo_limpo
