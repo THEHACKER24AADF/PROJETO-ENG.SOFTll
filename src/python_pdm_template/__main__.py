@@ -2,7 +2,7 @@
 Este arquivo é o ponto de entrada principal do pacote `python_pdm_template`.
 
 Função principal:
-- Define a função `main`, que é executada quando o pacote é chamado diretamente 
+- Define a função `main`, que é executada quando o pacote é chamado diretamente
   pela linha de comando.
 
 Como construir e usar:

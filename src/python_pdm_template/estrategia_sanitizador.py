@@ -19,7 +19,7 @@ class SanitizadorTXT(EstrategiaSanitizacao):
         """
         # Expressão regular para identificar CPF (padrão: 000.000.000-00)
         padrao_cpf = r"\d{3}\.\d{3}\.\d{3}-\d{2}"
-        
+
         # Expressão regular para identificar E-mails básicos
         padrao_email = r"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
 
