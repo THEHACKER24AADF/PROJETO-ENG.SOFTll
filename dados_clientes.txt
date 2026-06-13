@@ -1,0 +1,8 @@
+Relatório de Clientes - Junho/2026
+-----------------------------------
+1. João da Silva - CPF: 123.456.789-00 - Contato: joao.silva@email.com
+2. Maria Oliveira - CPF: 987.654.321-99 - Contato: maria_oli@empresa.com.br
+3. Empresa Fictícia - Sem CPF atrelado - Contato: contato@ficticia.net
+4. Carlos Souza - CPF: 111.222.333-44 - Telefone: (75) 99999-0000
+
+Observação: Estes dados são confidenciais e não devem ser vazados.

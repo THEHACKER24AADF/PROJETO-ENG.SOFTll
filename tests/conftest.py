@@ -13,6 +13,7 @@ Para mais informações, consulte a documentação do pytest: https://docs.pytes
 # Exemplo de fixture global
 import pytest
 
+
 @pytest.fixture
 def exemplo_fixture():
     """Uma fixture de exemplo que pode ser usada em testes."""

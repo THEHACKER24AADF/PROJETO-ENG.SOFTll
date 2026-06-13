@@ -5,7 +5,7 @@ O pytest só reconhece automaticamente arquivos com esses nomes.
 
 Este arquivo contém exemplos de testes utilizando pytest, incluindo:
 - Um teste simples para validar uma função.
-- Um teste que utiliza o recurso de monkeypatching do pytest para modificar 
+- Um teste que utiliza o recurso de monkeypatching do pytest para modificar
 comportamentos durante o teste.
 
 O objetivo é demonstrar como usar o pytest e seus recursos para criar testes eficazes.
@@ -21,12 +21,13 @@ def test_somar():
     resultado = somar(2, 3)
     assert resultado == 5  # noqa: PLR2004
 
+
 # Teste com monkeypatching
 
 
 def test_obter_mensagem(monkeypatch):  # pyright: ignore[reportMissingParameterType, reportUnknownParameterType]
     """
-    Teste que utiliza monkeypatching. 
+    Teste que utiliza monkeypatching.
 
     O objetivo aqui é substituir a função input() do Python por uma função personalizada
     durante o teste, para evitar a necessidade de interação do usuário. O teste verifica
@@ -51,6 +52,7 @@ def test_obter_mensagem(monkeypatch):  # pyright: ignore[reportMissingParameterT
     #     automatizados
     resultado = obter_mensagem()
     assert resultado == "Mensagem modificada"
+
 
 # Comentários adicionais:
 # - O pytest é um framework de testes poderoso e fácil de usar para Python.

@@ -1,0 +1,8 @@
+Relatório de Clientes - Junho/2026
+-----------------------------------
+1. João da Silva - CPF: ***.***.***-** - Contato: ***********
+2. Maria Oliveira - CPF: ***.***.***-** - Contato: ***********
+3. Empresa Fictícia - Sem CPF atrelado - Contato: ***********
+4. Carlos Souza - CPF: ***.***.***-** - Telefone: (75) 99999-0000
+
+Observação: Estes dados são confidenciais e não devem ser vazados.
