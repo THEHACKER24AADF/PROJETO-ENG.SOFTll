@@ -1,6 +1,7 @@
 """Módulo contendo a estratégia de sanitização para arquivos de texto."""
 
 import re
+
 from .base_sanitizador import EstrategiaSanitizacao
 
 
@@ -23,8 +24,6 @@ class SanitizadorTXT(EstrategiaSanitizacao):
         # Expressão regular para identificar E-mails básicos
         padrao_email = r"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
 
-        # Aplica as substituições no texto
-        conteudo_limpo = re.sub(padrao_cpf, "***.***.***-**", conteudo)
-        conteudo_limpo = re.sub(padrao_email, "***********", conteudo_limpo)
-
-        return conteudo_limpo
+        # Aplica as substituições no texto retornando diretamente o resultado final
+        conteudo_sem_cpf = re.sub(padrao_cpf, "***.***.***-**", conteudo)
+        return re.sub(padrao_email, "***********", conteudo_sem_cpf)
