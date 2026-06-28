@@ -4,6 +4,7 @@ import os
 from .estrategia_sanitizador import SanitizadorTXT
 
 def main():
+    """Função principal que inicia o sanitizador."""
     print("\n==================================================")
     print(" 🛡️  SISTEMA DE SANITIZAÇÃO DE DADOS (LGPD) 🛡️")
     print("==================================================\n")
