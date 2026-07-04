@@ -1,6 +1,6 @@
 """Arquivo principal de execução do Sanitizador."""
-
 import os
+from .detector_suspeito import DetectorConteudoSuspeito
 from .estrategia_sanitizador import SanitizadorTXT
 
 def main():
@@ -27,6 +27,19 @@ def main():
         with open(arquivo_entrada, 'r', encoding='utf-8') as f:
             conteudo_bruto = f.read()
 
+        # 1.5 Detecção de Riscos (Issue #11)
+        print("[*] Analisando riscos financeiros e de conformidade...")
+        detector = DetectorConteudoSuspeito()
+        alertas = detector.detectar(conteudo_bruto)
+
+        if alertas:
+            print(f"\n[ALERTA] Foram encontrados {len(alertas)} riscos no arquivo:")
+            for alerta in alertas:
+                print(f"  - Linha {alerta['linha']} | [{alerta['categoria']}] -> {alerta['trecho']}")
+            print("")
+        else:
+            print("[✓] Nenhum risco financeiro ou de compliance detectado.\n")
+            
         # 2. Processamento (Orquestração MVC)
         print("[*] Aplicando regras de proteção (Regex)...")
         sanitizador = SanitizadorTXT()
