@@ -1,64 +1,51 @@
-# python_pdm_template
+# 🛡️ Sanitizador de Arquivos com Foco na LGPD
 
-Este repositório é um template para projetos Python utilizando o [PDM](https://pdm.fming.dev/), uma ferramenta moderna de gerenciamento de pacotes e ambientes.
+Uma aplicação web desenvolvida em Python para detecção e higienização automática de dados sensíveis em arquivos de texto não estruturados (`.txt`). O sistema foi projetado para mitigar riscos de vazamento de informações e garantir conformidade com as diretrizes da Lei Geral de Proteção de Dados (LGPD).
 
-## Como usar este template
+## Propósito do Projeto
 
-1. **Copiar o template**:
-   - No GitHub, clique no botão ``Use this template`` (ou ``Usar este template``) na página do repositório.
-   - Siga as instruções para criar um novo repositório baseado neste template.
+Em ambientes corporativos e acadêmicos, o compartilhamento de logs, relatórios e bases de dados brutos frequentemente expõe dados pessoais de titulares (PII) ou termos confidenciais de compliance. Este projeto resolve esse problema através de uma esteira automatizada que realiza duas ações críticas:
+1. **Auditoria Visual (Detecção):** Escaneia o arquivo à procura de potenciais quebras de sigilo ou riscos financeiros (como senhas exponenciadas ou cartões de crédito).
+2. **Mascaramento (Sanitização):** Anonimiza dados estruturados (como CPFs e e-mails) por meio de substituição por caracteres opacos antes que o arquivo seja compartilhado.
 
-2. **Clonar o repositório**:
-   - Clone o novo repositório para sua máquina local:
-     ```bash
-     git clone https://github.com/seu-usuario/seu-repositorio.git
-     cd seu-repositorio
-     ```
+---
 
-## Configuração do ambiente
+## Tecnologias Utilizadas
 
-1. **Instalar o PDM**:
-   - Certifique-se de que o PDM está instalado. Caso não esteja, instale-o com o seguinte comando:
-     ```bash
-     python -m pip install pdm
-     ```
+* **Python 3.11+**: Linguagem core para o processamento de texto e lógica de negócio.
+* **Streamlit**: Framework utilizado para a construção de uma interface web interativa, responsiva e de rápido deploy.
+* **Regex (Expressões Regulares)**: Mecanismo de alta performance utilizado para a varredura e substituição padronizada de dados sensíveis.
+* **PDM**: Gerenciador moderno de pacotes e dependências de ambiente virtual.
 
-2. **Instalar dependências**:
-   - Execute o comando abaixo para instalar as dependências do projeto:
-     ```bash
-     python -m pdm install
-     ```
+---
 
-3. **Adicionar novas dependências**:
-   - Para adicionar uma nova dependência ao projeto, use o comando:
-     ```bash
-     python -m pdm add nome-da-dependencia
-     ```
-   - Para adicionar dependências de desenvolvimento (instaladas apenas no ambiente de desenvolvimento - nunca em produção), utilize:
-     ```bash
-     python -m pdm add -d nome-da-dependencia
-     ```
+## 🛡️ Regras de Negócio e Cobertura do Detector
 
-## Executar o projeto
+O sistema atua em duas frentes distintas durante a leitura de um arquivo:
 
-1. **Rodar o projeto**:
-   - Após instalar as dependências, você pode executar o projeto diretamente usando:
-     ```bash
-     python -m pdm run python src/python_pdm_template/__main__.py
-     ```
+### 1. Motor de Detecção de Riscos (Alertas Visuais)
+Identifica trechos suspeitos na interface do usuário, apontando o número exato da linha para auditoria manual:
+* **Dados Financeiros:** Padrões numéricos correspondentes a cartões de crédito.
+* **Termos de Compliance:** Presença de palavras-chave como *confidenciais*, *vazamento*, *uso interno* e variações.
+* **Credenciais:** Identificação de menções a senhas provisórias ou chaves de acesso.
 
-O PDM nao apenas controla dependencias e executa o projeto, ele também pode compilar o projeto Python em arquivos `.WHL` e publicá-los no repositório oficial de pacotes do Python ([PyPi](https://pypi.org/)).
+### 2. Motor de Sanitização (Mascaramento)
+Substitui automaticamente dados pessoais por máscaras de segurança (`***`), gerando um novo arquivo pronto para download seguro:
+* **CPFs:** Identificação de padrões com ou sem pontuação (`000.000.000-00`).
+* **E-mails:** Captura de endereços eletrônicos estruturados baseados em domínios válidos.
 
-Para mais informações sobre as essas e outras funcionalidades disponíveis no PDM, consulte a [documentação oficial](https://pdm.fming.dev/).
+---
 
-## Estrutura do projeto
+## 📂 Estrutura do Projeto
 
-- [**``.github/workflows/``**](.github/workflows): Configurações do GitHub Workflows para automacao de CI/CD (Integração Contínua e Entrega Contínua).
-- [**``.vscode/``**](.vscode): Configurações do Visual Studio Code.
-- [**``src/``**](src/python_pdm_template/): Contém o código-fonte do projeto.
-- [**``tests/``**](tests): Contém os testes do projeto.
-- [**``pyproject.toml``**](pyproject.md): Arquivo de configuração do projeto, incluindo dependências e metadados.
-
-Cada pasta ou arquivo acima tem um ``README.md`` explicando sua finalidade, como funciona, e como usar cada uma delas. **Clique nos links acima e leia com atenção cada um dos READMEs para entender melhor o projeto.**
-- Em cada um dos links acima **há tarefas para você realizar**, para praticar o que foi explicado no README. 
-- As tarefas poderão ser **utilizadas para fins de avaliação na disciplina.** Assim, realize todas as tarefas propostas e envie suas respostas no nosso Google Classroom.
+```text
+├── .venv/                          # Ambiente virtual local
+├── src/
+│   └── python_pdm_template/
+│       ├── __init__.py
+│       ├── detector_suspeito.py    # Lógica de varredura e auditoria de termos
+│       ├── estrategia_sanitizador.py # Mecanismo de mascaramento via Regex
+│       └── view_web.py             # Interface gráfica construída em Streamlit
+├── tests/                          # Suíte de testes unitários (PyTest)
+├── requirements.txt                # Passaporte de dependências para deploy na nuvem
+└── README.md                       # Documentação principal do repositório
