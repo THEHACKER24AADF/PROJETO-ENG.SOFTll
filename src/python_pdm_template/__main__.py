@@ -1,12 +1,12 @@
 """Arquivo principal de execução do Sanitizador."""
-
 import os
+from .detector_suspeito import DetectorConteudoSuspeito
 from .estrategia_sanitizador import SanitizadorTXT
 
 def main():
-    print("\n==================================================")
-    print(" 🛡️  SISTEMA DE SANITIZAÇÃO DE DADOS (LGPD) 🛡️")
-    print("==================================================\n")
+    """Função principal que inicia a execução do sistema."""
+    print("\n=======================================================")
+    print(" 🛡️  SISTEMA DE SANITIZAÇÃO DE DADOS (LGPD)  🛡️ ")
 
     # Arquivos fixos para facilitar a demonstração
     arquivo_entrada = "dados_clientes.txt"
@@ -26,6 +26,19 @@ def main():
         with open(arquivo_entrada, 'r', encoding='utf-8') as f:
             conteudo_bruto = f.read()
 
+        # 1.5 Detecção de Riscos (Issue #11)
+        print("[*] Analisando riscos financeiros e de conformidade...")
+        detector = DetectorConteudoSuspeito()
+        alertas = detector.detectar(conteudo_bruto)
+
+        if alertas:
+            print(f"\n[ALERTA] Foram encontrados {len(alertas)} riscos no arquivo:")
+            for alerta in alertas:
+                print(f"  - Linha {alerta['linha']} | [{alerta['categoria']}] -> {alerta['trecho']}")
+            print("")
+        else:
+            print("[✓] Nenhum risco financeiro ou de compliance detectado.\n")
+            
         # 2. Processamento (Orquestração MVC)
         print("[*] Aplicando regras de proteção (Regex)...")
         sanitizador = SanitizadorTXT()
